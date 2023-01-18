@@ -81,8 +81,17 @@ class NotInitializedException implements Exception {}
 
 class MockAuthProvider implements AuthProvider {
   AuthUser? _user;
+  @override
+  AuthUser? get currentUser => _user;
+
   var _isInitialized = false;
   bool get isInitialized => _isInitialized;
+
+  @override
+  Future<void> initialize() async {
+    await Future.delayed(const Duration(seconds: 1));
+    _isInitialized = true;
+  }
 
   @override
   Future<AuthUser> createUser({
@@ -95,15 +104,6 @@ class MockAuthProvider implements AuthProvider {
       email: email,
       password: password,
     );
-  }
-
-  @override
-  AuthUser? get currentUser => _user;
-
-  @override
-  Future<void> initialize() async {
-    await Future.delayed(const Duration(seconds: 1));
-    _isInitialized = true;
   }
 
   @override
