@@ -5,11 +5,13 @@ import 'package:mynotes/services/crud/crud_exceptions.dart';
 import 'package:path/path.dart' show join;
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:mynotes/extensions/list/filter.dart';
 
 class NotesService {
   Database? _db;
 
   List<DatabaseNote> _notes = [];
+  DatabaseUser? _user;
 
   static final NotesService _shared = NotesService._sharedInstance();
   NotesService._sharedInstance() {
@@ -25,13 +27,27 @@ class NotesService {
 
   late final StreamController<List<DatabaseNote>> _notesStreamController;
 
-  Stream get allNotes => _notesStreamController.stream;
+  Stream get allNotes => _notesStreamController.stream.filter((note) {
+        final currentUser = _user;
+        if (currentUser != null) {
+          return note.userId == currentUser.id;
+        } else {
+          throw UserShouldBeSetBeforeReadingAllNotes();
+        }
+      });
 
-  Future<DatabaseUser> getOrCreateUser({required String email}) async {
+  Future<DatabaseUser> getOrCreateUser({
+    required String email,
+    bool setAsCurrentUser = true,
+  }) async {
     try {
-      return await getUser(email: email);
+      final currentUser = await getUser(email: email);
+      _user = currentUser;
+      return currentUser;
     } on CouldNotFindUser {
-      return await createUser(email: email);
+      final createdUser = await createUser(email: email);
+      _user = createdUser;
+      return createdUser;
     } catch (e) {
       rethrow;
     }
@@ -60,10 +76,15 @@ class NotesService {
     final db = _getDatabaseOrThrow();
     await getNote(id: note.id);
 
-    final updatesCount = await db.update(noteTable, {
-      textColumn: text,
-      isSyncedWithCloudColumn: 0,
-    });
+    final updatesCount = await db.update(
+      noteTable,
+      where: 'id = ?',
+      whereArgs: [note.id],
+      {
+        textColumn: text,
+        isSyncedWithCloudColumn: 0,
+      },
+    );
 
     if (updatesCount == 0) {
       throw CouldNotUpdateNote();
