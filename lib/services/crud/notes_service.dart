@@ -1,4 +1,4 @@
-import 'dart:async';
+/* import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:mynotes/services/crud/crud_exceptions.dart';
@@ -348,3 +348,4 @@ const createNoteTable = '''
           PRIMARY KEY("id" AUTOINCREMENT),
           FOREIGN KEY("user_id") REFERENCES "user"("id")
         );''';
+ */
