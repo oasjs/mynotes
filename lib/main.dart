@@ -32,6 +32,7 @@ void main() {
       routes: {
         createOrUpdateNoteRoute: (context) => const CreateUpdateNoteView(),
       },
+      debugShowCheckedModeBanner: false,
     ),
   );
 }
