@@ -1,16 +1,18 @@
-# mynotes
 
-A new Flutter project.
+# My Notes
 
-## Getting Started
+My Notes is a IOS/Android mobile application for writing and storing your notes.
 
-This project is a starting point for a Flutter application.
+## Screenshots
 
-A few resources to get you started if this is your first Flutter project:
+![Login View](/app_screenshots/login.jpeg)
+![Register View](/app_screenshots/new_note.jpeg)
+![Notes View](/app_screenshots/notes.jpeg)
+![New Note](/app_screenshots/register.jpeg)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Acknowledgements
+
+ - [Freecodecamp](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
+ - [Vandad's Awesome Course](https://www.youtube.com/watch?v=VPvVD8t02U8)
+
