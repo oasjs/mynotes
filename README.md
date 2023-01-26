@@ -5,11 +5,17 @@ My Notes is a IOS/Android mobile application for writing and storing your notes.
 
 ## Screenshots
 
+### Login View
 <img src="/app_screenshots/login.jpeg" alt="drawing" width="200"/>
-![Login View](/app_screenshots/login.jpeg)
-![Register View](/app_screenshots/new_note.jpeg)
-![Notes View](/app_screenshots/notes.jpeg)
-![New Note](/app_screenshots/register.jpeg)
+
+### Register View
+<img src="/app_screenshots/register.jpeg" alt="drawing" width="200"/>
+
+### Notes View
+<img src="/app_screenshots/notes.jpeg" alt="drawing" width="200"/>
+
+### New Note View
+<img src="/app_screenshots/new_note.jpeg" alt="drawing" width="200"/>
 
 
 ## Acknowledgements
